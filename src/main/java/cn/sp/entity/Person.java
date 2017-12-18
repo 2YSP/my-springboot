@@ -1,8 +1,9 @@
 package cn.sp.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Person {
+public class Person implements Serializable{
 	
 	private Integer id;
 	private String name;
