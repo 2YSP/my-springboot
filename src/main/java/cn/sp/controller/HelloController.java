@@ -17,10 +17,15 @@ public class HelloController {
 
     final Logger logger = LoggerFactory.getLogger(HelloController.class);
 
-    @RequestMapping("")
+    @RequestMapping("/h")
     public String sayHello(ModelMap model){
         logger.debug("访问hello.....");
         model.addAttribute("title","访问hello");
         return "hello";
+    }
+
+    @RequestMapping("illegalAccess")
+    public String illegalAccess(){
+        return "illegalAccess";
     }
 }
