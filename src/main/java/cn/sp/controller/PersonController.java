@@ -2,11 +2,10 @@ package cn.sp.controller;
 
 import java.util.Date;
 
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import cn.sp.entity.Person;
 import cn.sp.service.PersonService;
@@ -23,14 +22,14 @@ public class PersonController {
 	private StringRedisTemplate stringRedisTemplate;//处理字符串
 	
 	
-	
-	@GetMapping("save")
-	public IResult savePerson(){
-		Person person = new Person();
-		person.setName("lisi");
-		person.setAge(12);
-		person.setSex("女");
-		person.setBirthday(new Date());
+	@ApiOperation(value = "创建用户",notes = "1")
+	@PostMapping("save")
+	public IResult savePerson(@RequestBody Person person){
+//		Person person = new Person();
+//		person.setName("lisi");
+//		person.setAge(12);
+//		person.setSex("女");
+//		person.setBirthday(new Date());
 		try{
 			personService.save(person);
 		}catch(Exception e){
@@ -39,20 +38,22 @@ public class PersonController {
 		}
 		return IResult.SUCCESS;
 	}
-	
+
+	@ApiOperation(value = "redis操作测试接口")
 	@GetMapping("test")
 	public String test(){
 		stringRedisTemplate.opsForValue().set("you", "andme");
 		return stringRedisTemplate.opsForValue().get("you");
 	}
-	
-	@GetMapping("/get")
-	public String get(){
-		Person p1 = personService.queryById(2);
-		System.out.println("p1"+p1);
+
+	@ApiOperation(value = "查询用户信息")
+	@GetMapping("/person/{uid}")
+	public Person get(@PathVariable int uid){
+		Person p1 = personService.queryById(uid);
+		System.out.println("p1:"+p1);
 		Person p2 = personService.queryById(2);
 		System.out.println("p2"+p2);
-		return "ok";
+		return p1;
 	}
 	
 }

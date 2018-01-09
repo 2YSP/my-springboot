@@ -1,14 +1,25 @@
 package cn.sp.entity;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 import java.io.Serializable;
 import java.util.Date;
-
+@ApiModel
 public class Person implements Serializable{
-	
+	@ApiModelProperty(value = "用户ID")
 	private Integer id;
+
+	@ApiModelProperty(value = "姓名",required = true)
 	private String name;
+
+	@ApiModelProperty(value = "性别")
 	private String sex;
+
+	@ApiModelProperty(value = "年龄")
 	private Integer age;
+
+	@ApiModelProperty(value = "生日")
 	private Date birthday;
 	public Integer getId() {
 		return id;

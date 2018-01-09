@@ -1,5 +1,6 @@
 package cn.sp.controller;
 
+import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -17,6 +18,7 @@ public class HelloController {
 
     final Logger logger = LoggerFactory.getLogger(HelloController.class);
 
+    @ApiOperation(value = "拦截器测试接口")
     @RequestMapping("/h")
     public String sayHello(ModelMap model){
         logger.debug("访问hello.....");

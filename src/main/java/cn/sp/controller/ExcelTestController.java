@@ -4,6 +4,7 @@ import cn.afterturn.easypoi.excel.ExcelExportUtil;
 import cn.afterturn.easypoi.excel.entity.ExportParams;
 import cn.sp.entity.StudentEntity;
 import cn.sp.vo.IResult;
+import io.swagger.annotations.ApiOperation;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -23,7 +24,7 @@ import java.util.List;
  */
 @RestController
 public class ExcelTestController {
-
+    @ApiOperation(value = "生成excel文件测试接口")
     @GetMapping("/excel")
     public IResult test()throws IOException{
         List<StudentEntity> list = new ArrayList<>();
