@@ -9,3 +9,6 @@ spring boot 学习项目<br>
 1.7&nbsp;添加二维码图片生成工具类<br>
 1.8&nbsp;添加拦截器及测试<br>
 1.9&nbsp;easypoi练习(教程地址：http://easypoi.mydoc.io/)<br>
+2.0&nbsp;添加swagger2 api文档<br>
+2.1&nbsp;使用@Scheduled()添加定时任务<br>
+2.2&nbsp;添加actuator监控<br>
