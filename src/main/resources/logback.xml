@@ -23,7 +23,7 @@
     </appender>
     <logger name="org.springframework" level="INFO" additivity="true"/>
 
-    <root level="DEBUG">
+    <root level="INFO">
         <appender-ref ref="STDOUT"/>
         <appender-ref ref="file"/>
     </root>
