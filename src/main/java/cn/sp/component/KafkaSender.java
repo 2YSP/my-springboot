@@ -39,7 +39,8 @@ public class KafkaSender implements CommandLineRunner{
     @Override
     public void run(String... strings) throws Exception {
         for(int i=0;i<3;i++){
-            send();
+//            使用时去掉注释
+//            send();
             try {
                 Thread.sleep(1000);
             }catch (InterruptedException e){

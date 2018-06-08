@@ -24,6 +24,6 @@ public class ScheduledTask {
      */
     @Scheduled(fixedRate = 5000)
     public void reportCurrentTime(){
-        System.out.println("Now is :"+dateFormat.format(new Date()));
+//        System.out.println("Now is :"+dateFormat.format(new Date()));
     }
 }
