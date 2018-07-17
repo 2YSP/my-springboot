@@ -12,3 +12,6 @@ spring boot 学习项目<br>
 2.0&nbsp;添加swagger2 api文档<br>
 2.1&nbsp;使用@Scheduled()添加定时任务<br>
 2.2&nbsp;添加actuator监控<br>
+2.3&nbsp;添加kafka使用示例,可参考<a href="https://www.cnblogs.com/2YSP/p/8982663.html">我的博客</a><br>
+2.4&nbsp;AspectJ的使用<br>
+2.5&nbsp;SpringMvc框架中重定向接口传参的两种方式
