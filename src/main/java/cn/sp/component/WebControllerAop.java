@@ -20,8 +20,8 @@ import java.util.Map;
  * Aspect切面类
  * Created by 2YSP on 2018/6/7.
  */
-@Component
-@Aspect
+//@Component
+//@Aspect
 public class WebControllerAop {
 
     private Gson gson = new GsonBuilder().create();
