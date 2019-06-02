@@ -14,4 +14,11 @@ spring boot 学习项目<br>
 2.2&nbsp;添加actuator监控<br>
 2.3&nbsp;添加kafka使用示例,可参考<a href="https://www.cnblogs.com/2YSP/p/8982663.html">我的博客</a><br>
 2.4&nbsp;AspectJ的使用<br>
-2.5&nbsp;SpringMvc框架中重定向接口传参的两种方式
+2.5&nbsp;SpringMvc框架中重定向接口传参的两种方式<br>
+2.6&nbsp;利用Spring的ThreadPoolTaskScheduler实现定时任务<br>
+2.7&nbsp;添加数据库连接池druid<br>
+2.8&nbsp;自定义获取ip地址的注解<br>
+2.9&nbsp;spring监听器,可参考<a href="https://www.cnblogs.com/2YSP/p/10958230.html">Spring事件机制详解</a><br>
+3.0&nbsp;利用FactoryBean接口创建bean<br>
+3.1&nbsp;mapstruct完成对象类型转换<br>
+3.2&nbsp;本地缓存之王Caffeine<br>
