@@ -117,8 +117,8 @@
 			<version>2.2.2</version>
 			<exclusions>
 				<exclusion>
-					<artifactId>org.mapstruct</artifactId>
-					<groupId>mapstruct</groupId>
+					<groupId>org.mapstruct</groupId>
+					<artifactId>mapstruct</artifactId>
 				</exclusion>
 			</exclusions>
 		</dependency>
