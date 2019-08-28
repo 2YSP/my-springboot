@@ -5,6 +5,7 @@ import cn.sp.intercepter.ServiceContextInterceptor;
 import cn.sp.intercepter.TestInterceptor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.servlet.config.annotation.*;
 
@@ -17,6 +18,7 @@ import java.util.List;
  */
 @Configuration
 @EnableWebMvc
+@Import(value = {RestResponseBodyAdvice.class})
 public class MvcConfig implements WebMvcConfigurer {
 
   //    @Bean
