@@ -18,8 +18,8 @@ import org.springframework.web.bind.annotation.RestController;
 public class RequestContextTestController {
 
   @RequestMapping(value = "test", method = RequestMethod.GET)
-  public String test(@RequestParam("userId") Long userId) {
-    System.out.println("请求的用户id:" + userId);
+  public String test() {
+    System.out.println("请求的用户id:" + ServiceContextHolder.getServiceContext().getUserId() + "");
 
     HystrixContextRunnable runnable =
         new HystrixContextRunnable(() -> {

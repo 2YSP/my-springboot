@@ -2,10 +2,15 @@ package cn.sp.conf;
 
 import cn.sp.component.IPAddressArgumentResolver;
 import cn.sp.intercepter.ServiceContextInterceptor;
-import cn.sp.intercepter.TestInterceptor;
+import com.alibaba.fastjson.serializer.SerializerFeature;
+import com.alibaba.fastjson.support.config.FastJsonConfig;
+import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
+import com.google.common.collect.Lists;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
+import org.springframework.http.MediaType;
+import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.servlet.config.annotation.*;
 
@@ -49,5 +54,24 @@ public class MvcConfig implements WebMvcConfigurer {
   @Override
   public void addArgumentResolvers(List<HandlerMethodArgumentResolver> resolvers) {
     resolvers.add(new IPAddressArgumentResolver());
+  }
+
+
+  @Override
+  public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
+    FastJsonHttpMessageConverter converter = new FastJsonHttpMessageConverter();
+    FastJsonConfig fastJsonConfig = new FastJsonConfig();
+    fastJsonConfig.setSerializerFeatures(SerializerFeature.PrettyFormat,
+        SerializerFeature.WriteNullListAsEmpty,
+        SerializerFeature.WriteNullStringAsEmpty,
+        SerializerFeature.WriteNullNumberAsZero,
+        SerializerFeature.WriteNullBooleanAsFalse);
+    //处理中文乱码
+    List<MediaType> mediaTypes = Lists.newArrayList();
+    mediaTypes.add(MediaType.APPLICATION_JSON_UTF8);
+    converter.setSupportedMediaTypes(mediaTypes);
+    converter.setFastJsonConfig(fastJsonConfig);
+    //添加
+    converters.add(converter);
   }
 }

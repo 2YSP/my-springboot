@@ -31,7 +31,7 @@ public class ServiceContextInterceptor extends HandlerInterceptorAdapter {
 
   private void initServiceContext(HttpServletRequest request, String url) {
     ServiceContext serviceContext = new ServiceContext();
-    String userId = request.getParameter("userId");
+    String userId = request.getHeader("userId");
     serviceContext.setUserId(Long.valueOf(userId));
     ServiceContextHolder.setServiceContext(serviceContext);
   }

@@ -28,6 +28,7 @@
     <maven-resources-plugin.version>2.6</maven-resources-plugin.version>
     <maven-compiler-plugin.version>3.1</maven-compiler-plugin.version>
     <mapstruct.version>1.2.0.Final</mapstruct.version>
+    <fastjson.version>1.2.46</fastjson.version>
   </properties>
 
   <!-- 添加仓库地址 -->
@@ -202,6 +203,13 @@
       <groupId>com.xuxueli</groupId>
       <artifactId>xxl-job-core</artifactId>
       <version>2.1.0</version>
+    </dependency>
+
+
+    <dependency>
+      <groupId>com.alibaba</groupId>
+      <artifactId>fastjson</artifactId>
+      <version>${fastjson.version}</version>
     </dependency>
   </dependencies>
 
