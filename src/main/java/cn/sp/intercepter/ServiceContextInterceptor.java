@@ -26,7 +26,7 @@ public class ServiceContextInterceptor extends HandlerInterceptorAdapter {
   @Override
   public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
       @Nullable ModelAndView modelAndView) throws Exception {
-    ServiceContextHolder.destory();
+    ServiceContextHolder.destroy();
   }
 
   private void initServiceContext(HttpServletRequest request, String url) {

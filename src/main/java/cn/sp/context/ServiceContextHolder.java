@@ -27,7 +27,7 @@ public class ServiceContextHolder {
     }
   }
 
-  public static void destory() {
+  public static void destroy() {
     if (HystrixRequestContext.isCurrentThreadInitialized()) {
       HystrixRequestContext.getContextForCurrentThread().shutdown();
     }
