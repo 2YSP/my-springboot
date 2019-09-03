@@ -22,3 +22,9 @@ spring boot 学习项目<br>
 3.0&nbsp;利用FactoryBean接口创建bean<br>
 3.1&nbsp;mapstruct完成对象类型转换<br>
 3.2&nbsp;本地缓存之王Caffeine<br>
+3.3&nbsp;自定义启动banner<br>
+3.4&nbsp;HystrixRequestContext学习<br>
+3.5&nbsp;分布式任务调度平台xxl-job<br>
+3.6&nbsp;jwt<br>
+3.7&nbsp;统一返回数据格式及全局异常处理<br>
+
