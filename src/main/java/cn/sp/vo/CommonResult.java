@@ -15,10 +15,21 @@ public class CommonResult<T> implements Serializable{
 
   private T data;
 
+  public CommonResult(){
+
+  }
+
   public CommonResult(T data){
     this.data = data;
     this.code = 200;
     this.message = "success";
   }
 
+
+  public static <T> CommonResult<T> errorResult(int errorCode,String errorMsg){
+    CommonResult<T> commonResult = new CommonResult<>();
+    commonResult.code = errorCode;
+    commonResult.message = errorMsg;
+    return commonResult;
+  }
 }

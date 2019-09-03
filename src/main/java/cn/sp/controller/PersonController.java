@@ -1,5 +1,6 @@
 package cn.sp.controller;
 
+import cn.sp.exception.BusinessException;
 import java.util.Date;
 
 import io.swagger.annotations.ApiOperation;
@@ -51,9 +52,12 @@ public class PersonController {
 	public Person get(@PathVariable int uid){
 		Person p1 = personService.queryById(uid);
 		System.out.println("p1:"+p1);
+		if (uid == 7){
+			throw new BusinessException(525,"查询用户信息异常");
+		}
 		Person p2 = personService.queryById(2);
 		System.out.println("p2"+p2);
 		return p1;
 	}
-	
+
 }
