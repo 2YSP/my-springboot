@@ -1,4 +1,4 @@
-package cn.sp;
+package cn.sp.test;
 
 import cn.sp.entity.Person;
 import com.fasterxml.jackson.core.JsonProcessingException;
