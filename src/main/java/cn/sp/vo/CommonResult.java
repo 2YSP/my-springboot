@@ -1,5 +1,6 @@
 package cn.sp.vo;
 
+import cn.sp.exception.BusinessException;
 import java.io.Serializable;
 import lombok.Data;
 
@@ -26,10 +27,12 @@ public class CommonResult<T> implements Serializable{
   }
 
 
-  public static <T> CommonResult<T> errorResult(int errorCode,String errorMsg){
+  public static <T> CommonResult<T> errorResult(BusinessException exception){
     CommonResult<T> commonResult = new CommonResult<>();
-    commonResult.code = errorCode;
-    commonResult.message = errorMsg;
+    commonResult.code = exception.getErrorCode();
+    commonResult.message = exception.getErrorMsg();
     return commonResult;
   }
+
+
 }

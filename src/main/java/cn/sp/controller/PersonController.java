@@ -6,6 +6,7 @@ import java.util.Date;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import cn.sp.entity.Person;
@@ -25,7 +26,7 @@ public class PersonController {
 	
 	@ApiOperation(value = "创建用户",notes = "1")
 	@PostMapping("save")
-	public IResult savePerson(@RequestBody Person person){
+	public IResult savePerson(@RequestBody @Validated Person person){
 //		Person person = new Person();
 //		person.setName("lisi");
 //		person.setAge(12);

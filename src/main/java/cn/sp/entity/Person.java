@@ -5,6 +5,9 @@ import io.swagger.annotations.ApiModelProperty;
 
 import java.io.Serializable;
 import java.util.Date;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
+
 @ApiModel
 public class Person implements Serializable{
 	@ApiModelProperty(value = "用户ID")
@@ -14,9 +17,11 @@ public class Person implements Serializable{
 	private String name;
 
 	@ApiModelProperty(value = "性别")
+	@NotEmpty(message = "{messages.error.sex-not-empty}")
 	private String sex;
 
 	@ApiModelProperty(value = "年龄")
+	@Min(value = 5,message = "{messages.error.age-must-large}")
 	private Integer age;
 
 	@ApiModelProperty(value = "生日")

@@ -6,11 +6,17 @@ import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.alibaba.fastjson.support.config.FastJsonConfig;
 import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
 import com.google.common.collect.Lists;
+import org.hibernate.validator.HibernateValidator;
+import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
+import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
+import org.springframework.lang.Nullable;
+import org.springframework.validation.Validator;
+import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.servlet.config.annotation.*;
 
@@ -74,4 +80,18 @@ public class MvcConfig implements WebMvcConfigurer {
     //添加
     converters.add(converter);
   }
+
+  @Nullable
+  @Override
+  public Validator getValidator() {
+    LocalValidatorFactoryBean factoryBean = new LocalValidatorFactoryBean();
+    ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
+    messageSource.setBasename("valid");
+    messageSource.setDefaultEncoding("UTF-8");
+    factoryBean.setValidationMessageSource(messageSource);
+    factoryBean.setProviderClass(HibernateValidator.class);
+    return factoryBean;
+  }
+
+
 }

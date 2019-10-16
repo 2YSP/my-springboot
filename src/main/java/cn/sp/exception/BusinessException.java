@@ -10,9 +10,13 @@ import lombok.Data;
 @AllArgsConstructor
 public class BusinessException extends RuntimeException {
 
-  private int errorCode;
+  private int errorCode = 525;
 
   private String errorMsg;
+
+  public BusinessException(String errorMsg){
+    this.errorMsg = errorMsg;
+  }
 
 
 }
