@@ -61,4 +61,10 @@ public class PersonController {
 		return p1;
 	}
 
+
+	@PostMapping("")
+	public String add(@RequestBody Person person){
+		personService.add(person);
+		return "ok";
+	}
 }
