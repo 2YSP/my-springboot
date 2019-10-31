@@ -5,6 +5,8 @@ import cn.sp.entity.CompanyConverter;
 import cn.sp.entity.CompanyDTO;
 import cn.sp.entity.Employee;
 import cn.sp.service.MailService;
+
+import org.jasypt.encryption.StringEncryptor;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +23,21 @@ public class MySpringbootApplicationTests {
 	private MailService mailService;
 
 	private String to = "ship@ubox.cn";
+
+	@Autowired
+	private StringEncryptor stringEncryptor;
+
+	@Test
+	public void encrypt(){
+		String encrypt = stringEncryptor.encrypt("1234");
+		System.out.println(encrypt);
+	}
+
+	@Test
+	public void decrypt(){
+		String decrypt = stringEncryptor.decrypt("BLXumM2LzuSY+ZdLMZe+8w==");
+		System.out.println(decrypt);
+	}
 
 	@Test
 	public void contextLoads() {
