@@ -8,6 +8,8 @@ import cn.sp.entity.Person;
 import cn.sp.service.MailService;
 import cn.sp.service.PersonService;
 import com.github.pagehelper.Page;
+
+import org.jasypt.encryption.StringEncryptor;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +28,24 @@ public class MySpringbootApplicationTests {
 	private String to = "ship@ubox.cn";
 
 	@Autowired
-	private PersonService personService;
+	private StringEncryptor stringEncryptor;
+
+  @Autowired
+  private PersonService personService;
+
+	@Test
+	public void encrypt(){
+		String encrypt = stringEncryptor.encrypt("1234");
+		System.out.println(encrypt);
+	}
+
+	@Test
+	public void decrypt(){
+		String decrypt = stringEncryptor.decrypt("BLXumM2LzuSY+ZdLMZe+8w==");
+		System.out.println(decrypt);
+	}
+
+
 
 	@Test
 	public void contextLoads() {

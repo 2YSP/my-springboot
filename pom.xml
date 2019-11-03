@@ -41,6 +41,7 @@
     <hystrix.version>1.5.12</hystrix.version>
     <swagger.version>2.2.2</swagger.version>
     <commons-codec.version>1.8</commons-codec.version>
+    <jasypt.version>2.1.2</jasypt.version>
     <pagehelper.version>5.1.4</pagehelper.version>
   </properties>
 
@@ -229,6 +230,13 @@
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-validation</artifactId>
+    </dependency>
+
+
+    <dependency>
+      <groupId>com.github.ulisesbocchio</groupId>
+      <artifactId>jasypt-spring-boot-starter</artifactId>
+      <version>${jasypt.version}</version>
     </dependency>
 
     <dependency>
