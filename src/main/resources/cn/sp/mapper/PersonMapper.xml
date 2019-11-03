@@ -9,4 +9,8 @@
   <select id="queryById" parameterType="Integer" resultType="Person">
   	select * from person where id = #{id};
   </select>
+
+  <select id="queryPage" resultType="Person">
+    SELECT * FROM person ORDER BY id DESC
+  </select>
 </mapper>

@@ -1,5 +1,7 @@
 package cn.sp.service;
 
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
 import org.springframework.aop.framework.AopContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
@@ -52,5 +54,11 @@ public class PersonService {
 	public void doAdd(Person person) {
 		personDao.save(person);
 		int i = 1/0;
+	}
+
+	public Page<Person> queryPage(int pageNo,int pageSize){
+		return PageHelper.startPage(pageNo,pageSize).doSelectPage(() ->{
+			personDao.queryPage();
+		});
 	}
 }

@@ -13,4 +13,10 @@
     <typeAliases>
         <package name="cn.sp.entity"/>
     </typeAliases>
+    
+    <plugins>
+        <plugin interceptor="com.github.pagehelper.PageInterceptor">
+            <!--<property name="properties" value="properties"/>-->
+        </plugin>
+    </plugins>
 </configuration>

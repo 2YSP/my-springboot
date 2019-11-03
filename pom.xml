@@ -41,6 +41,7 @@
     <hystrix.version>1.5.12</hystrix.version>
     <swagger.version>2.2.2</swagger.version>
     <commons-codec.version>1.8</commons-codec.version>
+    <pagehelper.version>5.1.4</pagehelper.version>
   </properties>
 
   <!-- 添加仓库地址 -->
@@ -230,6 +231,11 @@
       <artifactId>spring-boot-starter-validation</artifactId>
     </dependency>
 
+    <dependency>
+      <groupId>com.github.pagehelper</groupId>
+      <artifactId>pagehelper</artifactId>
+      <version>${pagehelper.version}</version>
+    </dependency>
   </dependencies>
 
   <build>

@@ -4,7 +4,10 @@ import cn.sp.entity.Company;
 import cn.sp.entity.CompanyConverter;
 import cn.sp.entity.CompanyDTO;
 import cn.sp.entity.Employee;
+import cn.sp.entity.Person;
 import cn.sp.service.MailService;
+import cn.sp.service.PersonService;
+import com.github.pagehelper.Page;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +25,9 @@ public class MySpringbootApplicationTests {
 
 	private String to = "ship@ubox.cn";
 
+	@Autowired
+	private PersonService personService;
+
 	@Test
 	public void contextLoads() {
 		mailService.sendSimpleMail(to,"内容：简单邮件测试","主题：邮件测试");
@@ -38,5 +44,11 @@ public class MySpringbootApplicationTests {
 
 		CompanyDTO companyDTO = CompanyConverter.INSTANCE.domain2DTO(company);
 		System.out.printf(companyDTO.toString());
+	}
+
+	@Test
+	public void pageHelperTest(){
+		Page<Person> page = personService.queryPage(1, 3);
+		System.out.println(page);
 	}
 }
