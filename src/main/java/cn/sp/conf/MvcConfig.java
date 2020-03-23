@@ -1,6 +1,7 @@
 package cn.sp.conf;
 
 import cn.sp.component.IPAddressArgumentResolver;
+import cn.sp.intercepter.AutoIdempotentInterceptor;
 import cn.sp.intercepter.ServiceContextInterceptor;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.alibaba.fastjson.support.config.FastJsonConfig;
@@ -20,6 +21,7 @@ import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.servlet.config.annotation.*;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -32,66 +34,70 @@ import java.util.List;
 @Import(value = {RestResponseBodyAdvice.class})
 public class MvcConfig implements WebMvcConfigurer {
 
-  //    @Bean
+    @Resource
+    private AutoIdempotentInterceptor autoIdempotentInterceptor;
+
+    //    @Bean
 //    public TestInterceptor getTestInterceptor(){
 //        return new TestInterceptor();
 //    }
-  @Bean
-  public ServiceContextInterceptor getServiceContextInterceptor() {
-    return new ServiceContextInterceptor();
-  }
+    @Bean
+    public ServiceContextInterceptor getServiceContextInterceptor() {
+        return new ServiceContextInterceptor();
+    }
 
-  @Override
-  public void addInterceptors(InterceptorRegistry registry) {
-    //拦截所有
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        //拦截所有
 //        registry.addInterceptor(getTestInterceptor()).addPathPatterns("/**");
-    registry.addInterceptor(getServiceContextInterceptor()).addPathPatterns("/request-context/**");
-  }
+        registry.addInterceptor(getServiceContextInterceptor()).addPathPatterns("/request-context/**");
+        registry.addInterceptor(autoIdempotentInterceptor).addPathPatterns("/token/**");
+    }
 
-  @Override
-  public void addResourceHandlers(ResourceHandlerRegistry registry) {
-    registry.addResourceHandler("/**").addResourceLocations("classpath:/static/");
-    registry.addResourceHandler("swagger-ui.html")
-        .addResourceLocations("classpath:/META-INF/resources/");
-    registry.addResourceHandler("/webjars/**")
-        .addResourceLocations("classpath:/META-INF/resources/webjars/");
-  }
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry.addResourceHandler("/**").addResourceLocations("classpath:/static/");
+        registry.addResourceHandler("swagger-ui.html")
+                .addResourceLocations("classpath:/META-INF/resources/");
+        registry.addResourceHandler("/webjars/**")
+                .addResourceLocations("classpath:/META-INF/resources/webjars/");
+    }
 
-  @Override
-  public void addArgumentResolvers(List<HandlerMethodArgumentResolver> resolvers) {
-    resolvers.add(new IPAddressArgumentResolver());
-  }
+    @Override
+    public void addArgumentResolvers(List<HandlerMethodArgumentResolver> resolvers) {
+        resolvers.add(new IPAddressArgumentResolver());
+    }
 
 
-  @Override
-  public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
-    FastJsonHttpMessageConverter converter = new FastJsonHttpMessageConverter();
-    FastJsonConfig fastJsonConfig = new FastJsonConfig();
-    fastJsonConfig.setSerializerFeatures(SerializerFeature.PrettyFormat,
-        SerializerFeature.WriteNullListAsEmpty,
-        SerializerFeature.WriteNullStringAsEmpty,
-        SerializerFeature.WriteNullNumberAsZero,
-        SerializerFeature.WriteNullBooleanAsFalse);
-    //处理中文乱码
-    List<MediaType> mediaTypes = Lists.newArrayList();
-    mediaTypes.add(MediaType.APPLICATION_JSON_UTF8);
-    converter.setSupportedMediaTypes(mediaTypes);
-    converter.setFastJsonConfig(fastJsonConfig);
-    //添加
-    converters.add(converter);
-  }
+    @Override
+    public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
+        FastJsonHttpMessageConverter converter = new FastJsonHttpMessageConverter();
+        FastJsonConfig fastJsonConfig = new FastJsonConfig();
+        fastJsonConfig.setSerializerFeatures(SerializerFeature.PrettyFormat,
+                SerializerFeature.WriteNullListAsEmpty,
+                SerializerFeature.WriteNullStringAsEmpty,
+                SerializerFeature.WriteNullNumberAsZero,
+                SerializerFeature.WriteNullBooleanAsFalse);
+        //处理中文乱码
+        List<MediaType> mediaTypes = Lists.newArrayList();
+        mediaTypes.add(MediaType.APPLICATION_JSON_UTF8);
+        converter.setSupportedMediaTypes(mediaTypes);
+        converter.setFastJsonConfig(fastJsonConfig);
+        //添加
+        converters.add(converter);
+    }
 
-  @Nullable
-  @Override
-  public Validator getValidator() {
-    LocalValidatorFactoryBean factoryBean = new LocalValidatorFactoryBean();
-    ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
-    messageSource.setBasename("valid");
-    messageSource.setDefaultEncoding("UTF-8");
-    factoryBean.setValidationMessageSource(messageSource);
-    factoryBean.setProviderClass(HibernateValidator.class);
-    return factoryBean;
-  }
+    @Nullable
+    @Override
+    public Validator getValidator() {
+        LocalValidatorFactoryBean factoryBean = new LocalValidatorFactoryBean();
+        ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
+        messageSource.setBasename("valid");
+        messageSource.setDefaultEncoding("UTF-8");
+        factoryBean.setValidationMessageSource(messageSource);
+        factoryBean.setProviderClass(HibernateValidator.class);
+        return factoryBean;
+    }
 
 
 }

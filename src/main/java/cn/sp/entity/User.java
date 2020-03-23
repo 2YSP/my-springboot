@@ -34,4 +34,12 @@ public class User implements Serializable{
     public void setAge(int age) {
         this.age = age;
     }
+
+    public User() {
+    }
+
+    public User(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
 }
