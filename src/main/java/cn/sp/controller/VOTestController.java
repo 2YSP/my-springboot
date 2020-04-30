@@ -1,6 +1,6 @@
 package cn.sp.controller;
 
-import cn.sp.component.IP;
+import cn.sp.annotation.IP;
 import cn.sp.vo.BaseVo;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;

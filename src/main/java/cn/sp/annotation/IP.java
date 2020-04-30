@@ -1,4 +1,4 @@
-package cn.sp.component;
+package cn.sp.annotation;
 
 import java.lang.annotation.*;
 
