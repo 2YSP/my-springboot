@@ -5,7 +5,7 @@ import cn.sp.entity.CompanyConverter;
 import cn.sp.entity.CompanyDTO;
 import cn.sp.entity.Employee;
 import cn.sp.entity.Person;
-import cn.sp.service.MailService;
+//import cn.sp.service.MailService;
 import cn.sp.service.PersonService;
 import com.github.pagehelper.Page;
 
@@ -22,8 +22,8 @@ import java.util.Date;
 @SpringBootTest
 public class MySpringbootApplicationTests {
 
-	@Autowired
-	private MailService mailService;
+//	@Autowired
+//	private MailService mailService;
 
 	private String to = "ship@ubox.cn";
 
@@ -49,7 +49,7 @@ public class MySpringbootApplicationTests {
 
 	@Test
 	public void contextLoads() {
-		mailService.sendSimpleMail(to,"内容：简单邮件测试","主题：邮件测试");
+//		mailService.sendSimpleMail(to,"内容：简单邮件测试","主题：邮件测试");
 	}
 
 	@Test
