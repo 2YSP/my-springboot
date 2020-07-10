@@ -2,7 +2,8 @@
 SQLyog Ultimate v11.33 (64 bit)
 MySQL - 5.6.40-log : Database - my_springboot
 *********************************************************************
-*/
+*/
+
 
 /*!40101 SET NAMES utf8 */;
 
@@ -29,6 +30,17 @@ CREATE TABLE `person` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
+DROP TABLE IF EXISTS `task_config`;
+
+CREATE TABLE `task_config` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `cron` varchar(32) NOT NULL DEFAULT '' COMMENT 'cron表达式',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+/*Data for the table `task_config` */
+
+insert  into `task_config`(`id`,`cron`) values (1,'0/5 * * * * ? ');
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
 /*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
