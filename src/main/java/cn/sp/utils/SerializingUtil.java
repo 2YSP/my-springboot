@@ -1,7 +1,6 @@
 package cn.sp.utils;
 
 
-import com.alibaba.fastjson.JSON;
 import com.dyuproject.protostuff.LinkedBuffer;
 import com.dyuproject.protostuff.ProtobufIOUtil;
 import com.dyuproject.protostuff.Schema;
