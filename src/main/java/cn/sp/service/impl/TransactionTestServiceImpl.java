@@ -3,6 +3,7 @@ package cn.sp.service.impl;
 import cn.sp.dao.PersonDao;
 import cn.sp.entity.Person;
 import cn.sp.service.TransactionTestService;
+import cn.sp.utils.SpringContextHolder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -25,7 +26,13 @@ public class TransactionTestServiceImpl implements TransactionTestService {
     @Override
     public void batchAdd(List<Person> personList) {
         // 异步调用也会导致事务失效
-        personList.parallelStream().forEach(person -> add(person));
+//        personList.parallelStream().forEach(person -> add(person));
+
+        // 这种不会失效
+        TransactionTestServiceImpl testService = SpringContextHolder.getBean(TransactionTestServiceImpl.class);
+        personList.forEach(person -> {
+            testService.add(person);
+        });
     }
 
     @Transactional(propagation = Propagation.REQUIRES_NEW, rollbackFor = Exception.class)
