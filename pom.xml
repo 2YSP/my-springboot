@@ -44,6 +44,7 @@
     <jasypt.version>2.1.2</jasypt.version>
     <pagehelper.version>5.1.4</pagehelper.version>
     <protostuff.version>1.0.7</protostuff.version>
+    <xstream.version>1.4.11.1</xstream.version>
   </properties>
 
   <!-- 添加仓库地址 -->
@@ -282,6 +283,13 @@
       <groupId>com.101tec</groupId>
       <artifactId>zkclient</artifactId>
       <version>0.10</version>
+    </dependency>
+
+    <!-- https://mvnrepository.com/artifact/com.thoughtworks.xstream/xstream -->
+    <dependency>
+      <groupId>com.thoughtworks.xstream</groupId>
+      <artifactId>xstream</artifactId>
+      <version>${xstream.version}</version>
     </dependency>
 
   </dependencies>
