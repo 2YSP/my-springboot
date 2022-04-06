@@ -44,7 +44,7 @@
     <jasypt.version>2.1.2</jasypt.version>
     <pagehelper.version>5.1.4</pagehelper.version>
     <protostuff.version>1.0.7</protostuff.version>
-    <xstream.version>1.4.11.1</xstream.version>
+    <xstream.version>1.4.19</xstream.version>
   </properties>
 
   <!-- 添加仓库地址 -->
