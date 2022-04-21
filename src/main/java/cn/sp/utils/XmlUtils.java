@@ -6,7 +6,7 @@ import com.thoughtworks.xstream.io.xml.DomDriver;
 /**
  * @author Ship
  * @version 1.0.0
- * @description: xml工具类
+ * @description:
  * @date 2022/04/01 14:13
  */
 public class XmlUtils {
@@ -28,6 +28,7 @@ public class XmlUtils {
         if (obj == null) {
             return "";
         }
+        xstream.processAnnotations(obj.getClass());
         return xstream.toXML(obj);
     }
 
@@ -56,6 +57,7 @@ public class XmlUtils {
      * @return
      */
     public static <T> T fromXml(String xml, Class<T> clazz) {
+        xstream.processAnnotations(clazz);
         T t = (T) xstream.fromXML(xml);
         return t;
     }
