@@ -3,6 +3,9 @@ package cn.sp.utils;
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.DomDriver;
 
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+
 /**
  * @author Ship
  * @version 1.0.0
@@ -11,11 +14,23 @@ import com.thoughtworks.xstream.io.xml.DomDriver;
  */
 public class XmlUtils {
 
-    private static XStream xstream = new XStream(new DomDriver("UTF-8"));
+    /**
+     * XStream实例缓存，避免每次new造成性能问题
+     */
+    private static final Map<Class<?>, XStream> XSTREAM_MAP = new ConcurrentHashMap<>(64);
 
-    static {
-        xstream.allowTypesByRegExp(new String[]{".*"});
-        xstream.autodetectAnnotations(true);
+    /**
+     * 获取XStream实例
+     *
+     * @return
+     */
+    private static XStream getXStreamInstance(Class<?> objClazz) {
+        return XSTREAM_MAP.computeIfAbsent(objClazz, k -> {
+            XStream xstream = new XStream(new DomDriver("UTF-8"));
+            xstream.allowTypesByRegExp(new String[]{".*"});
+            xstream.autodetectAnnotations(true);
+            return xstream;
+        });
     }
 
     /**
@@ -28,6 +43,7 @@ public class XmlUtils {
         if (obj == null) {
             return "";
         }
+        XStream xstream = getXStreamInstance(obj.getClass());
         xstream.processAnnotations(obj.getClass());
         return xstream.toXML(obj);
     }
@@ -43,6 +59,7 @@ public class XmlUtils {
         if (obj == null) {
             return "";
         }
+        XStream xstream = getXStreamInstance(obj.getClass());
         xstream.alias(alias, obj.getClass());
         return xstream.toXML(obj);
     }
@@ -57,6 +74,7 @@ public class XmlUtils {
      * @return
      */
     public static <T> T fromXml(String xml, Class<T> clazz) {
+        XStream xstream = getXStreamInstance(clazz);
         xstream.processAnnotations(clazz);
         T t = (T) xstream.fromXML(xml);
         return t;
@@ -72,20 +90,10 @@ public class XmlUtils {
      * @return
      */
     public static <T> T fromXml(String xml, Class<T> clazz, String alias) {
+        XStream xstream = getXStreamInstance(clazz);
         xstream.alias(alias, clazz);
         T t = (T) xstream.fromXML(xml);
         return t;
-    }
-
-    public static void main(String[] args) {
-//        QimenRequest request = new QimenRequest();
-//        request.setCode("0");
-//        request.setEntryOrderId("EID1234");
-//        String xml = toXml(request, "response");
-//        System.out.println(xml);
-//        QimenRequest qimenRequest = XmlUtils.fromXml(xml, QimenRequest.class, "response");
-//        System.out.println(qimenRequest);
-
     }
 
 
